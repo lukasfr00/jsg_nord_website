@@ -43,21 +43,9 @@ const ProductSite = (props) => {
             ]
             setShowAdded(true)
             props.addToCart(product)
+            window.scrollTo(0, 0)
         } else {
             setShowWarning(true)
-        }
-    }
-
-    const addedToCart = () => {
-        if(showAdded){
-            return (
-                <div className={classes.notification}>
-                    <p>Produkt zum Einkaufswagen hinzugefügt</p>
-                    <button onClick={()=>{setShowAdded(false)}}><i className="fa-solid fa-xmark"></i></button>
-                </div>
-            )
-        } else {
-            return <></>
         }
     }
 
@@ -77,7 +65,6 @@ const ProductSite = (props) => {
         <button className={classes.arrowBack} onClick={showProduct}>
             <i className="fa-solid fa-arrow-left"></i>
         </button>
-        {addedToCart()}
         <div className={classes.image}>
             <img src={props.image}/>
         </div>
