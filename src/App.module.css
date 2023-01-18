@@ -1,0 +1,14 @@
+.container {
+
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2 {
+    color: #2c5729;
+    margin: 0;
+}
