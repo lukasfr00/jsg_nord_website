@@ -90,6 +90,7 @@ const Teams = (props) => {
                 trainer_mail={teamSelected.trainer_mail}
                 trainer_phone={teamSelected.trainer_telefon}
                 trainerURL={teamSelected.trainer_fotoURL}
+                windowSize={props.windowSize}
             />
         )
     }

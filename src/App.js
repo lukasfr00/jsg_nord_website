@@ -18,6 +18,26 @@ function App() {
     const [cartElements, setCartElements] = useState(0)
     const [cartTotal, setCartTotal] = useState(0)
 
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+
+    function getWindowDimensions() {
+        const { innerWidth: width, innerHeight: height } = window;
+        return {
+            width,
+            height
+        };
+    }
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+
     const addProductToCart = (product) => {
         let cart_temp = []
         for(let i = 0; i < cart.length; i++){
@@ -56,7 +76,7 @@ function App() {
   return (
     <div className={classes.container}>
         <Router>
-            <Header cartElements={cartElements} active={activeSite}/>
+            <Header windowSize={windowDimensions} cartElements={cartElements} active={activeSite}/>
             <Routes>
                 <Route
                     path ="/" exact
@@ -64,7 +84,7 @@ function App() {
                 >
                 </Route>
                 <Route path ="/startseite" exact
-                       element={<Home setActive={setActiveSite}/>}
+                       element={<Home windowSize={windowDimensions} setActive={setActiveSite}/>}
                 >
                 </Route>
                 <Route path ="/neuigkeiten" exact
@@ -72,7 +92,7 @@ function App() {
                 >
                 </Route>
                 <Route path ="/mannschaften" exact
-                       element={<Teams setActive={setActiveSite}/>}
+                       element={<Teams windowSize={windowDimensions} setActive={setActiveSite}/>}
                 >
                 </Route>
                 <Route path ="/kontakt" exact
