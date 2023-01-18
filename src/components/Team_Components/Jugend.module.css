@@ -1,0 +1,52 @@
+.teamContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teamImageContainer {
+    width: 100%;
+}
+
+.teamImageContainer img {
+    width: 100%;
+    height: 30vh;
+    object-fit: cover;
+}
+
+.teamInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    margin-top: 20px;
+}
+
+.divide {
+    width: 50%;
+    height: 1px;
+    background: #2c5729;
+    margin-bottom: 20px;
+}
+
+.coachContainer {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coachContact {
+    width: 75%;
+}
+
+.coachImage {
+    width: 25%;
+}
+
+.coachImage img {
+    width: 100%;
+    object-fit: contain;
+}
