@@ -6,7 +6,6 @@ const Cart = (props) => {
 
     const [showPaymentInfos, setShowPaymentInfos] = useState(false)
 
-
     const togglePaymentInfos = () => {
         setShowPaymentInfos(!showPaymentInfos)
     }
@@ -43,13 +42,13 @@ const Cart = (props) => {
                                 <div className={classes.productInfos}>
                                     <div className={classes.productText}>
                                         <h3>{product[0].product_name}</h3>
-                                        <p>{product[0].product_size}</p>
-                                        <p>{product[0].product_color}</p>
+                                        <button onClick={()=>{props.deleteProduct(index)}} className={classes.deleteItem}>
+                                            <i className="fa-solid fa-trash"></i>
+                                        </button>
+                                        <p>Größe: {product[0].product_size}</p>
+                                        <p>Farbe: {product[0].product_color}</p>
                                         <p><b>{product[0].product_price} €</b></p>
                                     </div>
-                                    <button onClick={()=>{props.deleteProduct(index)}} className={classes.deleteItem}>
-                                        <i className="fa-solid fa-trash"></i>
-                                    </button>
                                 </div>
                             </div>
                         )
@@ -63,15 +62,19 @@ const Cart = (props) => {
 
     return <div className={classes.content}>
         <h2>Dein Einkaufswagen</h2>
-        <p>Hier siehst du die Produkte aus deinem Einkaufswagen aufgelistet. Durch einen Klick auf 'Weiter' gelangst du zum Bestellformular.</p>
         <button className={classes.paymentButton} onClick={togglePaymentInfos}>
             Warum benötigen wir keine Zahlungsmittel?
             {!showPaymentInfos && <i className="fa-solid fa-caret-right"></i>}
             {showPaymentInfos && <i className="fa-solid fa-caret-down"></i>}
         </button>
         {paymentInformation()}
+        <h3>Deine Produkte</h3>
         {props.cart.length == 0 && <div className={classes.cartEmpty}>Einkaufswagen ist leer</div>}
         {products()}
+        <div className={classes.total}>
+            <p>Gesamt:</p>
+            <p><b>{props.cartTotal} €</b></p>
+        </div>
         <div className={classes.buttons}>
             <Link className={classes.backButton} to='/shop'><p>Zurück</p></Link>
             <button className={classes.proceedButton}>Weiter</button>

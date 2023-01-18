@@ -16,6 +16,7 @@ function App() {
     const [activeSite, setActiveSite] = useState("startseite")
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
     const [cartElements, setCartElements] = useState(0)
+    const [cartTotal, setCartTotal] = useState(0)
 
     const addProductToCart = (product) => {
         let cart_temp = []
@@ -44,6 +45,12 @@ function App() {
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
         setCartElements(cart.length)
+
+        let total_temp = 0
+        for(let i = 0; i < cart.length; i++){
+            total_temp = total_temp + parseFloat(cart[i][0].product_price)
+        }
+        setCartTotal(total_temp)
     }, [cart]);
 
   return (
@@ -81,7 +88,7 @@ function App() {
                 >
                 </Route>
                 <Route path ="/einkaufswagen" exact
-                       element={<Cart cart={cart} cartElements={cartElements} deleteProduct={deleteProduct} setActive={setActiveSite}/>}
+                       element={<Cart cart={cart} cartElements={cartElements} cartTotal={cartTotal} deleteProduct={deleteProduct} setActive={setActiveSite}/>}
                 >
                 </Route>
             </Routes>
