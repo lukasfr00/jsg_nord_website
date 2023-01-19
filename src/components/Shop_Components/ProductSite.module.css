@@ -138,3 +138,21 @@
     justify-content: center;
     align-items: center;
 }
+
+/*Responsive*/
+
+@media (min-width: 750px) {
+    .container {
+        flex-direction: row;
+    }
+
+    .divide {
+        width: 1px;
+        height: 50vh;
+        margin: 0 6vw;
+    }
+
+    .productInfos p {
+        text-align: justify;
+    }
+}
