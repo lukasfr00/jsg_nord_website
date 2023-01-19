@@ -62,7 +62,52 @@ const Home = (props) => {
     }
 
     const contentOne = () => {
-        if(showNews) {
+        if (props.windowSize.width >= 830){
+            return (
+                <div className={classes.sectionOne}>
+                    <div className={classes.desktopContent}>
+                        <div className={classes.news}>
+                            <div className={classes.headline}>
+                                <img src={logo}/>
+                                <h2>JSG Neuigkeiten</h2>
+                            </div>
+                            <div className={classes.newsBoxes}>
+                                {
+                                    DUMMY_NEWS.map((singleNews, index)=> {
+                                        return <SingleNews
+                                            id={singleNews.id}
+                                            title={singleNews.title}
+                                            text={singleNews.text}
+                                            imageURL={singleNews.img_url}
+                                            key={singleNews.id}
+                                        />
+                                    })
+                                }
+                            </div>
+                        </div>
+                        <div className={classes.dates}>
+                            <div className={classes.headline}>
+                                <img src={logo}/>
+                                <h2>JSG Termine</h2>
+                            </div>
+                            <div className={classes.dateBoxes}>
+                                {
+                                    DUMMY_DATES.map((date, index)=> {
+                                        return <Date
+                                            id={date.id}
+                                            date={date.date}
+                                            title={date.title}
+                                            text={date.text}
+                                            key={date.id}
+                                        />
+                                    })
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )
+        } else if(showNews) {
             return (
                 <div className={classes.sectionOne}>
                     <div className={classes.toggleButtons}>
@@ -72,22 +117,24 @@ const Home = (props) => {
                         </div>
                         <button className={classes.inactiveButton} onClick={switchToDates}>Termine</button>
                     </div>
-                    <div className={classes.headline}>
-                        <img src={logo}/>
-                        <h2>JSG Neuigkeiten</h2>
-                    </div>
-                    <div className={classes.newsBoxes}>
-                        {
-                            DUMMY_NEWS.map((singleNews, index)=> {
-                                return <SingleNews
-                                    id={singleNews.id}
-                                    title={singleNews.title}
-                                    text={singleNews.text}
-                                    imageURL={singleNews.img_url}
-                                    key={singleNews.id}
-                                />
-                            })
-                        }
+                    <div className={classes.news}>
+                        <div className={classes.headline}>
+                            <img src={logo}/>
+                            <h2>JSG Neuigkeiten</h2>
+                        </div>
+                        <div className={classes.newsBoxes}>
+                            {
+                                DUMMY_NEWS.map((singleNews, index)=> {
+                                    return <SingleNews
+                                        id={singleNews.id}
+                                        title={singleNews.title}
+                                        text={singleNews.text}
+                                        imageURL={singleNews.img_url}
+                                        key={singleNews.id}
+                                    />
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             )
@@ -101,22 +148,24 @@ const Home = (props) => {
                             <div className={classes.triangle}></div>
                         </div>
                     </div>
-                    <div className={classes.headline}>
-                        <img src={logo}/>
-                        <h2>JSG Termine</h2>
-                    </div>
-                    <div className={classes.dateBoxes}>
-                        {
-                            DUMMY_DATES.map((date, index)=> {
-                                return <Date
-                                    id={date.id}
-                                    date={date.date}
-                                    title={date.title}
-                                    text={date.text}
-                                    key={date.id}
-                                />
-                            })
-                        }
+                    <div className={classes.dates}>
+                        <div className={classes.headline}>
+                            <img src={logo}/>
+                            <h2>JSG Termine</h2>
+                        </div>
+                        <div className={classes.dateBoxes}>
+                            {
+                                DUMMY_DATES.map((date, index)=> {
+                                    return <Date
+                                        id={date.id}
+                                        date={date.date}
+                                        title={date.title}
+                                        text={date.text}
+                                        key={date.id}
+                                    />
+                                })
+                            }
+                        </div>
                     </div>
                 </div>
             )
@@ -150,7 +199,7 @@ const Home = (props) => {
         <div className={classes.titleContainer}>
             <img src={title}/>
             <div className={classes.overlay}></div>
-            <div className={classes.title}>Willkommen bei der JSG!</div>
+            <div className={classes.title}>Willkommen bei der JSG Nord!</div>
         </div>
         <div className={classes.content}>
             {contentOne()}

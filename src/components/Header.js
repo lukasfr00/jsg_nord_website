@@ -9,17 +9,27 @@ const Header = (props) => {
     const [sideMenu, setSideMenu] = useState(false)
 
     const toggleSideMenu = () => {
-        setSideMenu(!sideMenu)
+        if(props.windowSize.width < 750){
+            setSideMenu(!sideMenu)
+        }
     }
+
+    useEffect(()=>{
+        if(props.windowSize.width >= 940){
+            setSideMenu(true)
+        } else {
+            setSideMenu(false)
+        }
+    },[props.windowSize, props.active])
 
     const showMenu = () => {
         if(sideMenu){
             return (
                 <div className={classes.sideMenu}>
-                    <button className={classes.hamburgerClose} onClick={toggleSideMenu}>
+                    {props.windowSize.width < 940 && <button className={classes.hamburgerClose} onClick={toggleSideMenu}>
                         <div className={classes.hamburgerCrossPos}></div>
                         <div className={classes.hamburgerCrossNeg}></div>
-                    </button>
+                    </button>}
                     <div className={classes.menu}>
                         <Link onClick={toggleSideMenu} className={props.active == "startseite" ? classes.menuLinkActive : classes.menuLink} to='/startseite'>Startseite</Link>
                         <Link onClick={toggleSideMenu} className={props.active == "neuigkeiten" ? classes.menuLinkActive : classes.menuLink} to='/neuigkeiten'>Neuigkeiten</Link>
@@ -51,7 +61,7 @@ const Header = (props) => {
     }
 
     return <>
-        {overlay()}
+        {props.windowSize.width < 940 && <>{overlay()}</>}
         <div className={classes.header}>
             <div className={classes.headerContainer}>
                 <div className={classes.logoContainer}>

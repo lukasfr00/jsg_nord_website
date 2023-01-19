@@ -16,6 +16,27 @@ function App() {
     const [activeSite, setActiveSite] = useState("startseite")
     const [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || [])
     const [cartElements, setCartElements] = useState(0)
+    const [cartTotal, setCartTotal] = useState(0)
+
+    const [windowDimensions, setWindowDimensions] = useState(getWindowDimensions())
+
+    function getWindowDimensions() {
+        const { innerWidth: width, innerHeight: height } = window;
+        return {
+            width,
+            height
+        };
+    }
+
+    useEffect(() => {
+        function handleResize() {
+            setWindowDimensions(getWindowDimensions());
+        }
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
 
     const addProductToCart = (product) => {
         let cart_temp = []
@@ -44,12 +65,18 @@ function App() {
     useEffect(() => {
         localStorage.setItem('cart', JSON.stringify(cart));
         setCartElements(cart.length)
+
+        let total_temp = 0
+        for(let i = 0; i < cart.length; i++){
+            total_temp = total_temp + parseFloat(cart[i][0].product_price)
+        }
+        setCartTotal(total_temp)
     }, [cart]);
 
   return (
     <div className={classes.container}>
         <Router>
-            <Header cartElements={cartElements} active={activeSite}/>
+            <Header windowSize={windowDimensions} cartElements={cartElements} active={activeSite}/>
             <Routes>
                 <Route
                     path ="/" exact
@@ -57,7 +84,7 @@ function App() {
                 >
                 </Route>
                 <Route path ="/startseite" exact
-                       element={<Home setActive={setActiveSite}/>}
+                       element={<Home windowSize={windowDimensions} setActive={setActiveSite}/>}
                 >
                 </Route>
                 <Route path ="/neuigkeiten" exact
@@ -65,7 +92,7 @@ function App() {
                 >
                 </Route>
                 <Route path ="/mannschaften" exact
-                       element={<Teams setActive={setActiveSite}/>}
+                       element={<Teams windowSize={windowDimensions} setActive={setActiveSite}/>}
                 >
                 </Route>
                 <Route path ="/kontakt" exact
@@ -81,7 +108,7 @@ function App() {
                 >
                 </Route>
                 <Route path ="/einkaufswagen" exact
-                       element={<Cart cart={cart} cartElements={cartElements} deleteProduct={deleteProduct} setActive={setActiveSite}/>}
+                       element={<Cart cart={cart} cartElements={cartElements} cartTotal={cartTotal} deleteProduct={deleteProduct} setActive={setActiveSite}/>}
                 >
                 </Route>
             </Routes>

@@ -289,15 +289,14 @@ const Shop = (props) => {
                                 return (
                                     <div className={classes.cartItem} key={index}>
                                         <h4>
-                                            {product[0].product_name}
+                                            {product[0].product_name} - {product[0].product_size}
                                         </h4>
                                         <div className={classes.cartItemOptions}>
                                             <button onClick={()=>{props.deleteProduct(index)}} className={classes.deleteItem}>
                                                 <i className="fa-solid fa-trash"></i>
                                             </button>
                                             <div className={classes.cartItemDetails}>
-                                                <p>Größe: {product[0].product_size}</p>
-                                                {product[0].product_price}
+                                                <b>{product[0].product_price} €</b>
                                             </div>
                                         </div>
                                     </div>
@@ -306,7 +305,7 @@ const Shop = (props) => {
                         }
                     </div>
                     <Link className={classes.cartButton} to='/einkaufswagen'>Zum Einkaufswagen</Link>
-                    <button onClick={toggleCart} className={classes.closeCart}><i className="fa-solid fa-xmark"></i></button>
+                    <button onClick={toggleCart} className={classes.closeCart}>Schließen</button>
                 </div>
             )
         } else return <></>
