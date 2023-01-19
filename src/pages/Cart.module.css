@@ -136,7 +136,7 @@
 
 .paymentInfosText {
     font-size: 12px;
-    width: 90%;
+    width: 95%;
     text-align: justify;
 }
 
@@ -149,4 +149,30 @@
 
 .total p {
     text-align: end;
+}
+
+@media (min-width: 750px) {
+    .image img {
+        width: 50%;
+    }
+
+    .paymentButton {
+        font-size: 20px;
+    }
+
+    .paymentInfosText {
+        font-size: 18px;
+    }
+
+    .productText h3 {
+        font-size: 30px;
+    }
+
+    .productText p {
+        font-size: 20px;
+    }
+
+    .deleteItem {
+        font-size: 25px;
+    }
 }
