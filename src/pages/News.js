@@ -61,7 +61,6 @@ const News = (props) => {
     },[])
 
     return <div className={classes.container}>
-        <h2>Neuigkeiten</h2>
         {content()}
     </div>
 }

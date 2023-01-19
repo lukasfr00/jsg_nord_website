@@ -177,3 +177,77 @@
     z-index: 30;
     pointer-events: none;
 }
+
+/*Responsive*/
+
+@media (min-width: 940px){
+    .sideMenu{
+        position: unset;
+        background: transparent;
+        height: 8vh;
+        width: 70%;
+    }
+
+    .menu {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .menu .menuLink {
+        color: #1d3b1c;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .menu .menuLinkActive {
+        color: #1d3b1c;
+        text-align: center;
+        font-weight: bold;
+        padding: 5px 0;
+        border-bottom: 3px solid #2c5729;
+        margin-bottom: -3px;
+        cursor: pointer;
+    }
+
+    .menu .menuLinkActiveShop {
+        margin: 0;
+        width: 90px;
+        color: white;
+        background: #2c5729;
+        cursor: pointer;
+    }
+
+    .menu .menuLinkShop {
+        margin: 0;
+        width: 90px;
+        color: #1d3b1c;
+        background: transparent;
+        outline: #2c5729 solid 1px;
+        transition: 300ms;
+        cursor: pointer;
+    }
+
+    .cartElements {
+        top: 0;
+        right: 0;
+    }
+
+    .menu .menuLinkActiveShop:hover {
+        color: #1d3b1c;
+        background: transparent;
+        outline: #2c5729 solid 1px;
+        cursor: pointer;
+    }
+
+    .menu .menuLinkShop:hover {
+        color: white;
+        background: #2c5729;
+        border: none;
+    }
+
+    .menu .menuLink:hover {
+        padding-bottom: 5px;
+        transition: 300ms;
+    }
+}
